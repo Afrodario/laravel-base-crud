@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+//Imposto la rotta di tipo resource con la parte di URL fissa (comic) e il nome del Controller designato
+Route::resource('comic', 'ComicController');
