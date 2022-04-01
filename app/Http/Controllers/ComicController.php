@@ -28,7 +28,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comic.create');
     }
 
     /**
@@ -39,7 +39,31 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //Tramite ALL raccolgo tutti i dati arrivati nel parametro request
+        $data = $request->all();
+
+        //Istanzio un nuovo fumetto
+        $comic = new Comic();
+
+        /*
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+        */
+
+        //Con la funzione fill riempio tutti i campi raccolti da data
+        $comic->fill($data);
+
+        //e salvo i dati
+        $comic->save();
+
+        //Ridireziono con REDIRECT alla rotta della show dell'istanza appena creata
+        return redirect()->route('comic.show', ['comic' => $comic->id]);
     }
 
     /**
@@ -48,16 +72,20 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)
     {
-        $currentComic = Comic::find($id);
+        //USO LA DEPENDANCY INJECTION - il nome della variabile dev'essere lo stesso del percorso
+
+
+        //METODO ALTERNATIVO con il metodo FIND
+        //$currentComic = Comic::find($id);
 
         //Verifico se l'id è effettivamente valido e, nel caso, ritorno la vista relativa, altrimenti un messaggio d'errore
-        if ($currentComic) {
-            return view('comic.show', compact('currentComic'));
-        } else {
-            abort(404);
-        }
+        //if ($currentComic) {
+            return view('comic.show', compact('comic'));
+        //} else {
+        //    abort(404);
+        //}
         
     }
 

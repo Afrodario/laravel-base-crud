@@ -8,6 +8,8 @@
 
     <h1>Lista Fumetti</h1>
 
+    <a class="btn btn-warning" href="{{route('comic.create')}}">Inserisci un nuovo fumetto</a>
+
     <table class="table">
         <thead>
         <tr>
@@ -35,6 +37,8 @@
                 <td>{{$comic->series}}</td>
                 <td>{{$comic->sale_date}}</td>
                 <td>{{$comic->type}}</td>
+
+                {{-- Inserisco un pulsante che riporti alla rotta show per ogni fumetto tramite relativo id --}}
                 <td><a class="btn btn-primary" href="{{route('comic.show', ['comic' => $comic->id])}}" role="button">Visita</a></td>
             </tr>
             @endforeach

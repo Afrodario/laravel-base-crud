@@ -1,24 +1,24 @@
 @extends('layouts.base')
 
 @section('PageTitle')
-{{$currentComic->id}}
+{{$comic->title}}
 @endsection
 
 @section('content')
 
 <div class="container">
 
-    <h1>{{$currentComic->title}}</h1>
+    <h1>{{$comic->title}}</h1>
 
     <div>
-        <div>ID:{{$currentComic->id}}</div>
-        <div>Titolo:{{$currentComic->title}}</div>
-        <div>Descrizione:{{$currentComic->description}}</div>
-        <div>Cover:<img src="{{$currentComic->thumb}}"></div>
-        <div>Prezzo:{{$currentComic->price}}</div>
-        <div>Serie:{{$currentComic->series}}</div>
-        <div>Messa in vendita:{{$currentComic->sale_date}}</div>
-        <div>Tipologia:{{$currentComic->type}}</div>
+        <div>ID:{{$comic->id}}</div>
+        <div>Titolo:{{$comic->title}}</div>
+        <div>Descrizione:{{$comic->description}}</div>
+        <div>Cover:<img src="{{$comic->thumb}}"></div>
+        <div>Prezzo:{{$comic->price}}</div>
+        <div>Serie:{{$comic->series}}</div>
+        <div>Messa in vendita:{{$comic->sale_date}}</div>
+        <div>Tipologia:{{$comic->type}}</div>
     </div>
 
 </div>
