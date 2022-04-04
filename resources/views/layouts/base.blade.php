@@ -21,6 +21,17 @@
             {{ session('status') }}
         </div>
     @endif
+
+    {{-- Risultati di eventuali errori della validazione delle funzioni del controller --}}
+    @if ($errors->any())
+        <div class="aler alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     
     {{-- Segnaposto del contenuto di pagina --}}
     @yield('content')

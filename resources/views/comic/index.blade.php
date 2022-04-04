@@ -39,8 +39,21 @@
                 <td>{{$comic->type}}</td>
 
                 {{-- Inserisco un pulsante che riporti alla rotta show per ogni fumetto tramite relativo id --}}
-                <td><a class="btn btn-primary" href="{{route('comic.show', ['comic' => $comic->id])}}" role="button">Visita</a></td>
-                <td><a class="btn btn-warning" href="{{route('comic.edit', ['comic' => $comic->id])}}" role="button">Modifica</a></td>
+                <td class="d-flex">
+                    <a class="btn btn-primary" href="{{route('comic.show', ['comic' => $comic->id])}}" role="button">Visita</a>
+                    <a class="btn btn-warning" href="{{route('comic.edit', ['comic' => $comic->id])}}" role="button">Modifica</a>
+
+                    {{-- Per richiamare la rotta destroy è necessario creare un form, con metodo POST e richiamare il sottometodo DELETE --}}
+                    <form method="POST" action="{{route('comic.destroy', ['comic' => $comic->id])}}">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger">Cancella</button>
+
+                    </form>
+                </td>
+                
             </tr>
             @endforeach
 

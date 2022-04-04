@@ -40,6 +40,19 @@ class ComicController extends Controller
     public function store(Request $request)
     {
 
+        //Inserisco le validazioni dei dati, con la funzione validate che accetta un array associativo
+        $request->validate(
+            [
+                'title' => 'required|min:3',
+                'description' => 'required|min:5',
+                'thumb' => 'required|url',
+                'price' => 'required|numeric|min:0',
+                'series' => 'required|min:3',
+                'sale_date' => 'required|date',
+                'type' => 'required'
+
+            ]
+        );
         //Tramite ALL raccolgo tutti i dati arrivati nel parametro request
         $data = $request->all();
 
@@ -110,6 +123,20 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+
+        //Inserisco le validazioni dei dati, con la funzione validate che accetta un array associativo
+        $request->validate(
+            [
+                'title' => 'required|min:3',
+                'description' => 'required|min:5',
+                'thumb' => 'required|url',
+                'price' => 'required|numeric|min:0',
+                'series' => 'required|min:3',
+                'sale_date' => 'required|date',
+                'type' => 'required'
+            ]
+        );
+
         $data = $request->all();
 
         //Funzione di aggiornamento dei dati recuperati tramite request
@@ -126,8 +153,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+
+        return redirect()->route('comic.index')->with('status', 'Fumetto cancellato correttamente!');
     }
 }
