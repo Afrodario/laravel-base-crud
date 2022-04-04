@@ -40,6 +40,7 @@
 
                 {{-- Inserisco un pulsante che riporti alla rotta show per ogni fumetto tramite relativo id --}}
                 <td><a class="btn btn-primary" href="{{route('comic.show', ['comic' => $comic->id])}}" role="button">Visita</a></td>
+                <td><a class="btn btn-warning" href="{{route('comic.edit', ['comic' => $comic->id])}}" role="button">Modifica</a></td>
             </tr>
             @endforeach
 

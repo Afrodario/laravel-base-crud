@@ -1,16 +1,19 @@
 @extends('layouts.base')
 
-@section('PageTitle', 'Inserimento nuovo fumetto')
-
+@section('PageTitle')
+    Modifica di {{$comic->title}}
 @section('content')
 <div class="container">
 
+    <h1>Modifica di {{$comic->title}}</h1>
     {{-- Il form dovrà avere metodo POST e bisogna specificare la rotta store
         per immagazzinare i dati creati in ACTION --}}
-    <form method="POST" action="{{route('comic.store')}}">
+    <form method="POST" action="{{route('comic.update', ['comic' => $comic->id])}}">
 
         {{-- Meccanismo di verifica --}}
         @csrf
+        {{-- Sottometodo per poter effettuare la raccolta dei dati da inviare all'update --}}
+        @method('PUT')
 
         <div class="mb-3">
             <label for="thumb" class="form-label">Indirizzo immagine</label>

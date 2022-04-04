@@ -9,6 +9,7 @@
 
 <div class="container">
   <h1>Archivio Fumetti</h1>
+  <a class="btn btn-primary" href="{{route('comic.index')}}">Vai all'archivio</a>
 </div>
 
 @endsection

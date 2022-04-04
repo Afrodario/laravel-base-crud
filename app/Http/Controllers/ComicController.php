@@ -63,7 +63,8 @@ class ComicController extends Controller
         $comic->save();
 
         //Ridireziono con REDIRECT alla rotta della show dell'istanza appena creata
-        return redirect()->route('comic.show', ['comic' => $comic->id]);
+        //OPPURE all'index con annesso un messaggio di status dell'operazione
+        return redirect()->route('comic.index')->with('status', 'Nuovo fumetto creato!!');;
     }
 
     /**
@@ -95,9 +96,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comic.edit', compact('comic'));
     }
 
     /**
@@ -107,9 +108,16 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->all();
+
+        //Funzione di aggiornamento dei dati recuperati tramite request
+        $comic->update($data);
+
+        $comic->save();
+
+        return redirect()->route('comic.show', ['comic' => $comic->id]);
     }
 
     /**

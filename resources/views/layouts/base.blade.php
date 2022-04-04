@@ -14,6 +14,13 @@
 
 </head>
 <body>
+
+    {{-- Dati FLASH per visualizzazione status--}}
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     
     {{-- Segnaposto del contenuto di pagina --}}
     @yield('content')
